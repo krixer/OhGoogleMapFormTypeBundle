@@ -56,7 +56,7 @@
 				  'current_position_el': $('#{{ id }}_current_position'),
 				  'default_lat'        : '{% if value is defined and value and attribute(value, lat_name) %}{{ attribute(value, lat_name) }}{% else %}{{ default_lat }}{% endif %}',
 				  'default_lng'        : '{% if value is defined and value and attribute(value, lng_name) %}{{ attribute(value, lng_name) }}{% else %}{{ default_lng }}{% endif %}',
-				  'default_zoom'       : {% if value is defined and value and value.latitude and value.longitude %}15{% else %}5{% endif %},
+				  'default_zoom'       : {% if value is defined and value and attribute(value, lng_name) %}{{ attribute(value, lng_name) }}15{% else %}5{% endif %},
 				  'lat_field'          : $('#{{ attribute(form, lat_name).vars.id }}'),
 				  'lng_field'          : $('#{{ attribute(form, lng_name).vars.id }}'),
 				{% if addr_name is defined and addr_name and attribute(form, addr_name) %}
