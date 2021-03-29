@@ -15,7 +15,7 @@
 			'addr_field'         : null,
 			'callback'           : function (location, gmap) {},
 			'error_callback'     : function(status) {
-				$this.settings.search_error_el.text(status);
+				this.settings.search_error_el.text(status);
 			},
 		}, settings);
 
@@ -72,7 +72,7 @@
 					$this.insertMarker(results[0].geometry.location);
 					$this.setAddress(results[0].formatted_address)
 				} else {
-					$this.settings.error_callback(status);
+					$this.settings.error_callback.call($this, status);
 				}
 			});
 		},
@@ -83,7 +83,7 @@
 				if (status == google.maps.GeocoderStatus.OK) {
 					$this.setAddress(results[0].formatted_address);
 				} else {
-					$this.settings.error_callback(status);
+					$this.settings.error_callback.call($this, status);
 				}
 			});
 		},
@@ -105,11 +105,11 @@
 						$this.map.setZoom(16);
 					},
 					function(error) {
-						$this.settings.error_callback(error);
+						$this.settings.error_callback.call($this, error);
 					}
 				);
 			} else {
-				$this.settings.search_error_el.text('Your broswer does not support geolocation');
+				$this.settings.search_error_el.text('Your browser does not support geolocation');
 			}
 
 		},
@@ -178,7 +178,7 @@
 		'addr_field'         : null,
 		'callback'           : function (location, gmap) {},
 		'error_callback'     : function(status) {
-			$this.settings.search_error_el.text(status);
+			this.settings.search_error_el.text(status);
 		}
 	}
 
